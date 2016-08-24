@@ -57,6 +57,7 @@ public class WheelView extends View {
     int maxTextWidth;
     int maxTextHeight;
     float itemHeight;//每行高度
+    float dividerThickness;
 
     int textColorOut;
     int textColorCenter;
@@ -120,6 +121,7 @@ public class WheelView extends View {
         //配合customTextSize使用，customTextSize为true才会发挥效果
         textSize = getResources().getDimensionPixelSize(R.dimen.pickerview_textsize);
         customTextSize = getResources().getBoolean(R.bool.pickerview_customTextSize);
+        dividerThickness = getResources().getDimension(R.dimen.pickerview_divider_thickness);
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.pickerview, 0, 0);
             mGravity = a.getInt(R.styleable.pickerview_pickerview_gravity, Gravity.CENTER);
@@ -143,7 +145,6 @@ public class WheelView extends View {
         initPosition = -1;
 
         initPaints();
-
     }
 
     private void initPaints() {
@@ -161,6 +162,7 @@ public class WheelView extends View {
         paintCenterText.setTextSize(textSize);
 
         paintIndicator = new Paint();
+        paintIndicator.setStrokeWidth(dividerThickness);
         paintIndicator.setColor(dividerColor);
         paintIndicator.setAntiAlias(true);
 
